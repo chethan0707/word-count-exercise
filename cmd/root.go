@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/chethan0707/gowc/helpers"
+	"github.com/chethan0707/gowc/internals/interfaces"
 	"github.com/spf13/cobra"
 )
 
-var lineFlag bool
+var (
+	lineFlag bool
+	wordFlag bool
+)
 
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "gowc",
 	Short: "wc is a word, line, and character count tool",
@@ -22,13 +24,19 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		var output string
-		if lineFlag {
-			output += helpers.ReadTextFile(args[0])
-		}
-		output += fmt.Sprintf("  %s", args[0])
-
+		var output interfaces.Result
 		fmt.Println(output)
+		// if lineFlag {
+		// 	output = helpers.ReadTextFile(args[0])
+		// }
+
+		// if wordFlag {
+		// 	output += helpers.ReadTextFile(args[0])
+		// }
+
+		// output += fmt.Sprintf("  %s", args[0])
+
+		// fmt.Println(output)
 	},
 }
 
@@ -41,5 +49,7 @@ func Execute() {
 
 func init() {
 	rootCmd.Flags().BoolVarP(&lineFlag, "lines", "l", false, "Count number of lines")
+	rootCmd.Flags().BoolVarP(&wordFlag, "words", "w", false, "Count number of words")
+
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
