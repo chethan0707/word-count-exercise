@@ -1,7 +1,7 @@
 package interfaces
 
 type Result struct {
-	lines      int
-	words      int
-	characters int
+	Lines      int
+	Words      int
+	Characters int
 }

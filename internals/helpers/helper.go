@@ -32,5 +32,5 @@ func ReadTextFile(filePath string) interfaces.Result {
 		lineCount++
 	}
 
-	return interfaces.Result{}
+	return interfaces.Result{Lines: lineCount}
 }

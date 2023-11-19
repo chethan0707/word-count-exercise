@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/chethan0707/gowc/internals/helpers"
 	"github.com/chethan0707/gowc/internals/interfaces"
 	"github.com/spf13/cobra"
 )
@@ -24,19 +25,19 @@ var rootCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		var output interfaces.Result
-		fmt.Println(output)
-		// if lineFlag {
-		// 	output = helpers.ReadTextFile(args[0])
-		// }
+		var output string
+		var result interfaces.Result = helpers.ReadTextFile(args[0])
+
+		if lineFlag {
+			output += fmt.Sprintf("%8d", result.Lines)
+		}
 
 		// if wordFlag {
 		// 	output += helpers.ReadTextFile(args[0])
 		// }
 
-		// output += fmt.Sprintf("  %s", args[0])
-
-		// fmt.Println(output)
+		output += fmt.Sprintf("  %s", args[0])
+		fmt.Println(output)
 	},
 }
 
